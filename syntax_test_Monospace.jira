@@ -1,0 +1,33 @@
+// SYNTAX TEST "Packages/jira-formatting/jira-formatting.sublime-syntax"
+
+   {{monospace}}
+// ^^ punctuation.definition.braces.begin.jira
+//   ^^^^^^^^^ markup.raw.inline.jira
+//            ^^ punctuation.definition.braces.end.jira
+
+   {{mono {{ space}}
+// ^^ punctuation.definition.braces.begin.jira
+//   ^^^^^^^^^^^^^ markup.raw.inline.jira
+//        ^^ - punctuation.definition.braces.begin.jira
+//                ^^ punctuation.definition.braces.end.jira
+
+   {{mono { space}}
+//        ^ invalid.illegal.stray.brace.jira
+
+   {{mono \{ space}}
+//        ^^ constant.character.escape.jira - invalid.illegal.stray.brace.jira
+
+   {{ monospace}}
+//   ^ invalid.illegal.whitespace.jira
+
+   {{  monospace}}
+//   ^^ invalid.illegal.whitespace.jira
+
+   {{monospace }}
+//               ^ invalid.illegal.unexpected-eol.jira
+
+   {{mono }} space}}
+// ^^ punctuation.definition.braces.begin.jira
+//   ^^^^^^^^^^^^^ markup.raw.inline.jira
+//        ^^ - punctuation.definition.braces.end.jira
+//                ^^ punctuation.definition.braces.end.jira

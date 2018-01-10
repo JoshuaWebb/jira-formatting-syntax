@@ -1,0 +1,43 @@
+// SYNTAX TEST "Packages/jira-formatting/jira-formatting.sublime-syntax"
+
+h1. Something
+//<- punctuation.definition.heading.jira
+ //<-punctuation.definition.heading.jira
+//^ punctuation.definition.heading.jira
+//  ^^^^^^^^^ markup.heading.jira markup.heading.1.jira
+
+h2. Something
+//<- punctuation.definition.heading.jira
+ //<-punctuation.definition.heading.jira
+//^ punctuation.definition.heading.jira
+//  ^^^^^^^^^ markup.heading.jira markup.heading.2.jira
+
+h3. Something
+//<- punctuation.definition.heading.jira
+ //<-punctuation.definition.heading.jira
+//^ punctuation.definition.heading.jira
+//  ^^^^^^^^^ markup.heading.jira markup.heading.3.jira
+
+h4. Something
+//<- punctuation.definition.heading.jira
+ //<-punctuation.definition.heading.jira
+//^ punctuation.definition.heading.jira
+//  ^^^^^^^^^ markup.heading.jira markup.heading.4.jira
+
+h5. Something
+//<- punctuation.definition.heading.jira
+ //<-punctuation.definition.heading.jira
+//^ punctuation.definition.heading.jira
+//  ^^^^^^^^^ markup.heading.jira markup.heading.5.jira
+
+h6. Something
+//<- punctuation.definition.heading.jira
+ //<-punctuation.definition.heading.jira
+//^ punctuation.definition.heading.jira
+//  ^^^^^^^^^ markup.heading.jira markup.heading.6.jira
+
+h7. nope
+//<- - punctuation.definition.heading.jira
+ //<- - punctuation.definition.heading.jira
+//^ - punctuation.definition.heading.jira
+//  ^^^^^^^^^ - markup.heading.jira - markup.heading

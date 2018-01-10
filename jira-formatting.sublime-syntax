@@ -1,0 +1,113 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions:
+  - jira
+scope: text.jira
+
+contexts:
+  # The prototype context is prepended to all contexts but those setting
+  # meta_include_prototype: false.
+  prototype:
+    - include: comments
+
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - include: escape
+    - include: bold
+    - include: heading
+    - include: monospaced
+
+  escape:
+    - match: '\\.'
+      scope: constant.character.escape.jira
+
+  heading:
+    # TODO: can this be done without the duplication?
+    - match: 'h1\.'
+      scope: punctuation.definition.heading.jira
+      push:
+        - meta_scope: markup.heading.jira markup.heading.1.jira
+        - match: $\n?
+          pop: true
+    - match: 'h2\.'
+      scope: punctuation.definition.heading.jira
+      push:
+        - meta_scope: markup.heading.jira markup.heading.2.jira
+        - match: $\n?
+          pop: true
+    - match: 'h3\.'
+      scope: punctuation.definition.heading.jira
+      push:
+        - meta_scope: markup.heading.jira markup.heading.3.jira
+        - match: $\n?
+          pop: true
+    - match: 'h4\.'
+      scope: punctuation.definition.heading.jira
+      push:
+        - meta_scope: markup.heading.jira markup.heading.4.jira
+        - match: $\n?
+          pop: true
+    - match: 'h5\.'
+      scope: punctuation.definition.heading.jira
+      push:
+        - meta_scope: markup.heading.jira markup.heading.5.jira
+        - match: $\n?
+          pop: true
+    - match: 'h6\.'
+      scope: punctuation.definition.heading.jira
+      push:
+        - meta_scope: markup.heading.jira markup.heading.6.jira
+        - match: $\n?
+          pop: true
+
+  monospaced:
+    - match: '{{(\s*)(?=[^\n]+}})'
+      captures:
+        1: invalid.illegal.whitespace.jira
+      scope: punctuation.definition.braces.begin.jira
+      push:
+        - meta_scope: markup.raw.inline.jira
+        # Not really "escaped"... this is literally two braces in the output
+        - match: '{{'
+        - match: '\\{'
+          scope: constant.character.escape.jira
+        - match: '{(?!{)'
+          scope: invalid.illegal.stray.brace.jira
+        - match: '(?<! )}}'
+          scope: punctuation.definition.braces.end.jira
+          pop: true
+        - match: $\n?
+          scope: invalid.illegal.unexpected-eol.jira
+          pop: true
+
+  bold:
+    - match: '(?<!\w)\*(?=(?!\s)(.*(?<!\s)[\*](?!\w))+)'
+      scope: punctuation.definition.bold.jira
+      push: inside_bold
+    - match: '\{\*\}'
+      scope: constant.character.escape.jira punctuation.definition.bold.jira
+      push: inside_bold
+
+  inside_bold:
+    - meta_include_prototype: false
+    - meta_scope: markup.bold.jira
+    - match: '\{\*\}'
+      scope: constant.character.escape.jira punctuation.definition.bold.jira
+      pop: true
+    - match: '\\.'
+      scope: constant.character.escape.jira
+    - match: '(?<=\S)\*(?!\w)'
+      scope: punctuation.definition.bold.jira
+      pop: true
+
+  comments:
+    # Comments begin with a '//' and finish at the end of the line.
+    - match: '//'
+      scope: punctuation.definition.comment.jira
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.line.double-slash.jira
+        - match: $\n?
+          pop: true
