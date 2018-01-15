@@ -83,17 +83,30 @@ contexts:
           pop: true
 
   bold:
-    - match: '(?<!\w)\*(?=(?!\s)(.*(?<!\s)[\*](?!\w))+)'
+      # This doesn't implement all of the matching rules, it ensures that
+      # invalid bold cases don't get pushed into bold mode, because we can't
+      # un-mark something as bold if we later discover it doesn't form a pair
+    - match: |-
+        (?x)
+          (?<!\w)     # Can't be preceded directly by a word character
+          \*          # The opening `*`
+          (?![\s\*])  # Can't have a space or a `*` directly after the opening `*`
+          (?=         # Look for (but don't consume) a valid closing `*`
+            .*        #   Some bold characters (which may include other non-closing asterisks)
+            \S        #   Can't have a space directly before the closing `*`
+            \*        #   The closing `*`
+            (?!\w)    #   Can't have a word character directly after the closing `*`
+          )
       scope: punctuation.definition.bold.jira
       push: inside_bold
-    - match: '\{\*\}'
+    - match: '\{\*\}(?![\s\*])'
       scope: constant.character.escape.jira punctuation.definition.bold.jira
       push: inside_bold
 
   inside_bold:
     - meta_include_prototype: false
     - meta_scope: markup.bold.jira
-    - match: '\{\*\}'
+    - match: '(?<=\S)\{\*\}'
       scope: constant.character.escape.jira punctuation.definition.bold.jira
       pop: true
     - match: '\\.'
