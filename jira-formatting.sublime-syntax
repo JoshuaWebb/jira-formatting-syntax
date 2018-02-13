@@ -86,27 +86,57 @@ contexts:
       # This doesn't implement all of the matching rules, it ensures that
       # invalid bold cases don't get pushed into bold mode, because we can't
       # un-mark something as bold if we later discover it doesn't form a pair
+
+      # TODO: There's some ideas in here that might be useful,
+      #       it needs to properly embed the concept of "this might
+      #       not be the closing asterisk, but it's acceptable provided
+      #       that a real closing asterisk is present"
+      #
+      #       the closing asterisk cannot be preceded by spaces,
+      #       but embedded asterisks can, similarly embedded asterisks
+      #       can be surrounded by word characters.
     - match: |-
         (?x)
-          (?<!\w)     # Can't be preceded directly by a word character
-          \*          # The opening `*`
+          (?:
+            (?<!\w)     # Can't be preceded directly by a word character
+            \*          # The opening `*`
+            |
+            (\{\*\})    # Possibly escaped
+          )
           (?![\s\*])  # Can't have a space or a `*` directly after the opening `*`
           (?=         # Look for (but don't consume) a valid closing `*`
-            .*        #   Some bold characters (which may include other non-closing asterisks)
-            \S        #   Can't have a space directly before the closing `*`
-            \*        #   The closing `*`
-            (?!\w)    #   Can't have a word character directly after the closing `*`
+            (?:
+              [^\*\\]\*     # A single (non-asterisk, non-escape) character then the closing asterisk
+              |
+              (?:           # Otherwise
+                [^\*\\]{2,}          # At least two non-asterisk characters (or non-escape characters)
+                |
+                [^\\\*]*\\.[^\\\*]*  # Or an escaped character (with optionally some non-asterisks around it)
+              )
+              (\*)          # An asterisk (this is only the closing asterisk if it isn't followed directly some word characters)
+
+              # Once we've had at least one of the above, then the requirements are relaxed
+              # to just one or more non-asterisk characters
+              (?:
+                (?:
+                  [^\*\\]+           # At least one non-asterisk characters (or non-escape characters)
+                  |
+                  [^\\\*]*\\.        # Or an escaped character (with optionally some non-asterisks around it)
+                )
+                (\*)                 # Followed by an asterisk (this is only the closing asterisk if it isn't followed directly some word characters)
+              )*            # There can be many nested asterisks that aren't the closing asterisk
+            )
+            (?!\w)    # Can't have a word character directly after the closing `*` (if there is, it isn't a closing asterisk)
           )
       scope: punctuation.definition.bold.jira
-      push: inside_bold
-    - match: '\{\*\}(?![\s\*])'
-      scope: constant.character.escape.jira punctuation.definition.bold.jira
+      captures:
+        1: constant.character.escape.jira
       push: inside_bold
 
   inside_bold:
     - meta_include_prototype: false
     - meta_scope: markup.bold.jira
-    - match: '(?<=\S)\{\*\}'
+    - match: '(?<![\s\*])\{\*\}'
       scope: constant.character.escape.jira punctuation.definition.bold.jira
       pop: true
     - match: '\\.'
