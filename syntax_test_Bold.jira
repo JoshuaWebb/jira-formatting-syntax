@@ -1,5 +1,8 @@
 // SYNTAX TEST "Packages/jira-formatting/jira-formatting.sublime-syntax"
 
+   *\*
+// ^^^ - markup.bold.jira - punctuation.definition.bold.jira
+
    x*escaped*
 // ^^^^^^^^^^ - markup.bold.jira
 
@@ -7,62 +10,103 @@
 // ^^^^^^^^^^ - markup.bold.jira
 // ^^ constant.character.escape.jira
 
-   *bo*ld
+   *pp*pp
 // ^^^^^^ - markup.bold.jira
 
-   *bold*
+   *bb*b*
 // ^ punctuation.definition.bold.jira
 //  ^^^^ markup.bold.jira
+//    ^ - punctuation.definition.bold.jira
 //      ^ punctuation.definition.bold.jira
 
-   -*bold*
-//  ^ punctuation.definition.bold.jira
-//   ^^^^ markup.bold.jira
-//       ^ punctuation.definition.bold.jira
+   *p*ppp*
+// ^ - punctuation.definition.bold.jira
+//  ^^^^^ - markup.bold.jira
+//   ^ - punctuation.definition.bold.jira
+//       ^ - punctuation.definition.bold.jira
 
-   *bo{*}ld
-// ^ punctuation.definition.bold.jira
-//  ^^ markup.bold.jira
-//    ^^^ constant.character.escape.jira punctuation.definition.bold.jira
-//       ^^ - markup.bold.jira
-
-   b{*}old*
-//  ^^^ constant.character.escape.jira punctuation.definition.bold.jira
-//     ^^^ markup.bold.jira
-//        ^ punctuation.definition.bold.jira
-
-   *bo*ld*
+   *bb*bb*
 // ^ punctuation.definition.bold.jira
 //  ^^^^^ markup.bold.jira
 //    ^ - punctuation.definition.bold.jira
 //       ^ punctuation.definition.bold.jira
 
-   *bo\*ld*
+   *p*p*
+// ^^^^^ - markup.bold.jira - punctuation.definition.bold.jira
+
+   {*}b*b*
+// ^ - punctuation.definition.bold.jira - markup.bold.jira
+//  ^ punctuation.definition.bold.jira
+//   ^^^^ markup.bold.jira
+//     ^ - punctuation.definition.bold.jira
+//       ^ punctuation.definition.bold.jira
+
+   {*}bb*bb*
+// ^^^ punctuation.definition.bold.jira constant.character.escape.jira
+//    ^^^^^ markup.bold.jira
+//      ^ - punctuation.definition.bold.jira
+//         ^ punctuation.definition.bold.jira
+
+   {*}b**b*
+// ^^^ punctuation.definition.bold.jira constant.character.escape.jira
+//    ^ markup.bold.jira
+//     ^^ punctuation.definition.bold.jira
+//       ^ markup.bold.jira
+//        ^ punctuation.definition.bold.jira
+
+   *bbbb*
+// ^ punctuation.definition.bold.jira
+//  ^^^^ markup.bold.jira
+//      ^ punctuation.definition.bold.jira
+
+   -*bbbb*
+//  ^ punctuation.definition.bold.jira
+//   ^^^^ markup.bold.jira
+//       ^ punctuation.definition.bold.jira
+
+   *bb{*}pp
+// ^ punctuation.definition.bold.jira
+//  ^^ markup.bold.jira
+//    ^^^ constant.character.escape.jira punctuation.definition.bold.jira
+//       ^^ - markup.bold.jira
+
+   p{*}bbb*
+//  ^^^ punctuation.definition.bold.jira constant.character.escape.jira
+//     ^^^ markup.bold.jira
+//        ^ punctuation.definition.bold.jira
+
+   *b\*b*
+// ^ markup.bold.jira punctuation.definition.bold.jira
+//  ^^^^ markup.bold.jira
+//   ^^ constant.character.escape.jira - punctuation.definition.bold.jira
+//      ^ markup.bold.jira punctuation.definition.bold.jira
+
+   *bb\*bb*
 // ^ markup.bold.jira punctuation.definition.bold.jira
 //  ^^^^^^ markup.bold.jira
 //    ^^ constant.character.escape.jira - punctuation.definition.bold.jira
 //        ^ markup.bold.jira punctuation.definition.bold.jira
 
-   *bo *ld*
+   *b *b*
 // ^ punctuation.definition.bold.jira
-//  ^^^^^^ markup.bold.jira
-//    ^^ - punctuation.definition.bold.jira
-//        ^ punctuation.definition.bold.jira
+//  ^^^^ markup.bold.jira
+//    ^ - punctuation.definition.bold.jira
+//      ^ punctuation.definition.bold.jira
 
-   *bo * ld*
+   *b * b*
 // ^ punctuation.definition.bold.jira
-//  ^^^^^^ markup.bold.jira
-//     ^ - markup.bold.jira punctuation.definition.bold.jira
-//         ^ punctuation.definition.bold.jira
+//  ^^^^^ markup.bold.jira
+//    ^ - markup.bold.jira punctuation.definition.bold.jira
+//       ^ punctuation.definition.bold.jira
 
-   *bo* ld*
+   *b* pp*
 // ^ punctuation.definition.bold.jira
-//  ^^ markup.bold.jira
-//    ^ punctuation.definition.bold.jira
-//     ^^^ - markup.bold.jira
-//        ^ - punctuation.definition.bold.jira
+//  ^ markup.bold.jira
+//   ^ punctuation.definition.bold.jira
+//    ^^^ - markup.bold.jira
+//       ^ - punctuation.definition.bold.jira
 
-   *bold**
+   *bbbb**
 // ^ punctuation.definition.bold.jira
 //  ^^^^ markup.bold.jira
 //      ^ punctuation.definition.bold.jira
@@ -71,7 +115,20 @@
    *\**
 // ^ punctuation.definition.bold.jira
 //  ^^ markup.bold.jira
+//  ^^ constant.character.escape.jira - punctuation.definition.bold.jira
 //    ^ punctuation.definition.bold.jira
+
+   *\*b*
+// ^ punctuation.definition.bold.jira
+//  ^^^ markup.bold.jira
+//  ^^ constant.character.escape.jira - punctuation.definition.bold.jira
+//     ^ punctuation.definition.bold.jira
+
+   *b\**
+// ^ punctuation.definition.bold.jira
+//  ^^^ markup.bold.jira
+//   ^^ constant.character.escape.jira - punctuation.definition.bold.jira
+//     ^ punctuation.definition.bold.jira
 
    {*} slightly wonky*
 // ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
@@ -85,21 +142,21 @@
 //                  ^ punctuation.definition.bold.jira
 //                   ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
 
-   **bold**
+   **bbbb**
 // ^ - markup.bold.jira - punctuation.definition.bold.jira
 //  ^ punctuation.definition.bold.jira
 //   ^^^^ markup.bold.jira
 //       ^ punctuation.definition.bold.jira
 //        ^ - markup.bold.jira - punctuation.definition.bold.jira
 
-   ***bold***
+   ***bbbb***
 // ^^ - markup.bold.jira - punctuation.definition.bold.jira
 //   ^ punctuation.definition.bold.jira
 //    ^^^^ markup.bold.jira
 //        ^ punctuation.definition.bold.jira
 //         ^^ - markup.bold.jira - punctuation.definition.bold.jira
 
-   {*}*x*
+   {*}*b*
 // ^^^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
 //    ^ punctuation.definition.bold.jira
 //     ^ markup.bold.jira
@@ -116,219 +173,3 @@
 //  ^ punctuation.definition.bold.jira
 //   ^ markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
 //    ^ punctuation.definition.bold.jira
-
-// DUPICATE all of the above but on the same line with an x in middle
-// the x is never within a bold region
-
-   x*escaped* x x*escaped*
-// ^^^^^^^^^^ - markup.bold.jira
-//            ^ - markup.bold.jira
-//              ^^^^^^^^^^ - markup.bold.jira
-
-   \*escaped* x \*escaped*
-// ^^^^^^^^^^ - markup.bold.jira
-// ^^ constant.character.escape.jira
-//            ^ - markup.bold.jira
-//              ^^^^^^^^^^ - markup.bold.jira
-//              ^^ constant.character.escape.jira
-
-   *bo*ld x *bo*ld
-// ^^^^^^ - markup.bold.jira
-//        ^ - markup.bold.jira
-//          ^^^^^^ - markup.bold.jira
-
-   *bold* x *bold*
-// ^ punctuation.definition.bold.jira
-//  ^^^^ markup.bold.jira
-//      ^ punctuation.definition.bold.jira
-//        ^ - markup.bold.jira
-//          ^ punctuation.definition.bold.jira
-//           ^^^^ markup.bold.jira
-//               ^ punctuation.definition.bold.jira
-
-   -*bold* x -*bold*
-//  ^ punctuation.definition.bold.jira
-//   ^^^^ markup.bold.jira
-//       ^ punctuation.definition.bold.jira
-//         ^ - markup.bold.jira
-//            ^ punctuation.definition.bold.jira
-//             ^^^^ markup.bold.jira
-//                 ^ punctuation.definition.bold.jira
-
-   *bo{*}ld x *bo{*}ld
-// ^ punctuation.definition.bold.jira
-//  ^^ markup.bold.jira
-//    ^^^ constant.character.escape.jira punctuation.definition.bold.jira
-//       ^^ - markup.bold.jira
-//          ^ - markup.bold.jira
-//            ^ punctuation.definition.bold.jira
-//             ^^ markup.bold.jira
-//               ^^^ constant.character.escape.jira punctuation.definition.bold.jira
-//                  ^^ - markup.bold.jira
-
-   b{*}old* x b{*}old*
-//  ^^^ constant.character.escape.jira punctuation.definition.bold.jira
-//     ^^^ markup.bold.jira
-//        ^ punctuation.definition.bold.jira
-//          ^ - markup.bold.jira
-//             ^^^ constant.character.escape.jira punctuation.definition.bold.jira
-//                ^^^ markup.bold.jira
-//                   ^ punctuation.definition.bold.jira
-
-   *bo*ld* x *bo*ld*
-// ^ punctuation.definition.bold.jira
-//  ^^^^^ markup.bold.jira
-//    ^ - punctuation.definition.bold.jira
-//       ^ punctuation.definition.bold.jira
-//         ^ - markup.bold.jira
-//           ^ punctuation.definition.bold.jira
-//            ^^^^^ markup.bold.jira
-//              ^ - punctuation.definition.bold.jira
-//                 ^ punctuation.definition.bold.jira
-
-   *bo\*ld* x *bo\*ld*
-// ^ markup.bold.jira punctuation.definition.bold.jira
-//  ^^^^^^ markup.bold.jira
-//    ^^ constant.character.escape.jira - punctuation.definition.bold.jira
-//        ^ markup.bold.jira punctuation.definition.bold.jira
-//          ^ - markup.bold.jira
-//            ^ markup.bold.jira punctuation.definition.bold.jira
-//             ^^^^^^ markup.bold.jira
-//               ^^ constant.character.escape.jira - punctuation.definition.bold.jira
-//                   ^ markup.bold.jira punctuation.definition.bold.jira
-
-   *bo *ld* x *bo *ld*
-// ^ punctuation.definition.bold.jira
-//  ^^^^^^ markup.bold.jira
-//    ^^ - punctuation.definition.bold.jira
-//        ^ punctuation.definition.bold.jira
-//          ^ - markup.bold.jira
-//            ^ punctuation.definition.bold.jira
-//             ^^^^^^ markup.bold.jira
-//               ^^ - punctuation.definition.bold.jira
-//                   ^ punctuation.definition.bold.jira
-
-   *bo * ld* x *bo * ld*
-// ^ punctuation.definition.bold.jira
-//  ^^^^^^ markup.bold.jira
-//     ^ - markup.bold.jira punctuation.definition.bold.jira
-//         ^ punctuation.definition.bold.jira
-//           ^ - markup.bold.jira
-//             ^ punctuation.definition.bold.jira
-//              ^^^^^^ markup.bold.jira
-//                 ^ - markup.bold.jira punctuation.definition.bold.jira
-//                     ^ punctuation.definition.bold.jira
-
-   *bo* ld* x *bo* ld*
-// ^ punctuation.definition.bold.jira
-//  ^^ markup.bold.jira
-//    ^ punctuation.definition.bold.jira
-//     ^^^ - markup.bold.jira
-//        ^ - punctuation.definition.bold.jira
-//          ^ - markup.bold.jira
-//            ^ punctuation.definition.bold.jira
-//             ^^ markup.bold.jira
-//               ^ punctuation.definition.bold.jira
-//                ^^^ - markup.bold.jira
-//                   ^ - punctuation.definition.bold.jira
-
-   *bold** x *bold**
-// ^ punctuation.definition.bold.jira
-//  ^^^^ markup.bold.jira
-//      ^ punctuation.definition.bold.jira
-//       ^ - markup.bold.jira - punctuation.definition.bold.jira
-//         ^ - markup.bold.jira
-//           ^ punctuation.definition.bold.jira
-//            ^^^^ markup.bold.jira
-//                ^ punctuation.definition.bold.jira
-//                 ^ - markup.bold.jira - punctuation.definition.bold.jira
-
-   *\** x *\**
-// ^ punctuation.definition.bold.jira
-//  ^^ markup.bold.jira
-//    ^ punctuation.definition.bold.jira
-//      ^ - markup.bold.jira
-//        ^ punctuation.definition.bold.jira
-//         ^^ markup.bold.jira
-//           ^ punctuation.definition.bold.jira
-
-   {*} slightly wonky* x {*} slightly wonky*
-// ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//  ^ punctuation.definition.bold.jira
-//   ^^^^^^^^^^^^^^^^ markup.bold.jira
-//                   ^ punctuation.definition.bold.jira
-//                     ^ - markup.bold.jira
-//                       ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//                        ^ punctuation.definition.bold.jira
-//                         ^^^^^^^^^^^^^^^^ markup.bold.jira
-//                                         ^ punctuation.definition.bold.jira
-
-   *slightly wonky {*} x *slightly wonky {*}
-// ^ punctuation.definition.bold.jira
-//  ^^^^^^^^^^^^^^^^ markup.bold.jira
-//                  ^ punctuation.definition.bold.jira
-//                   ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//                     ^ - markup.bold.jira
-//                       ^ punctuation.definition.bold.jira
-//                        ^^^^^^^^^^^^^^^^ markup.bold.jira
-//                                        ^ punctuation.definition.bold.jira
-//                                         ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-
-   **bold** x **bold**
-// ^ - markup.bold.jira - punctuation.definition.bold.jira
-//  ^ punctuation.definition.bold.jira
-//   ^^^^ markup.bold.jira
-//       ^ punctuation.definition.bold.jira
-//        ^ - markup.bold.jira - punctuation.definition.bold.jira
-//          ^ - markup.bold.jira
-//            ^ - markup.bold.jira - punctuation.definition.bold.jira
-//             ^ punctuation.definition.bold.jira
-//              ^^^^ markup.bold.jira
-//                  ^ punctuation.definition.bold.jira
-//                   ^ - markup.bold.jira - punctuation.definition.bold.jira
-
-   ***bold*** x ***bold***
-// ^^ - markup.bold.jira - punctuation.definition.bold.jira
-//   ^ punctuation.definition.bold.jira
-//    ^^^^ markup.bold.jira
-//        ^ punctuation.definition.bold.jira
-//         ^^ - markup.bold.jira - punctuation.definition.bold.jira
-//            ^ - markup.bold.jira
-//              ^^ - markup.bold.jira - punctuation.definition.bold.jira
-//                ^ punctuation.definition.bold.jira
-//                 ^^^^ markup.bold.jira
-//                     ^ punctuation.definition.bold.jira
-//                      ^^ - markup.bold.jira - punctuation.definition.bold.jira
-
-   {*}*x* x {*}*x*
-// ^^^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//    ^ punctuation.definition.bold.jira
-//     ^ markup.bold.jira
-//      ^ punctuation.definition.bold.jira
-//        ^ - markup.bold.jira
-//          ^^^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//             ^ punctuation.definition.bold.jira
-//              ^ markup.bold.jira
-//               ^ punctuation.definition.bold.jira
-
-   *{*} x *{*}
-// ^ punctuation.definition.bold.jira
-//  ^ markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//   ^ punctuation.definition.bold.jira
-//    ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//      ^ - markup.bold.jira
-//        ^ punctuation.definition.bold.jira
-//         ^ markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//          ^ punctuation.definition.bold.jira
-//           ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-
-   {*}* x {*}*
-// ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//  ^ punctuation.definition.bold.jira
-//   ^ markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//    ^ punctuation.definition.bold.jira
-//      ^ - markup.bold.jira
-//        ^ - markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//         ^ punctuation.definition.bold.jira
-//          ^ markup.bold.jira - constant.character.escape.jira - punctuation.definition.bold.jira
-//           ^ punctuation.definition.bold.jira
